@@ -23,6 +23,9 @@ I've kept asking that question since, in every domain I touch.
 - **Retrieval changes what an agent says, not just how sure it sounds.** From memory, a security agent labelled SSH
   brute force as "Valid Accounts" every time; with the MITRE ATT&CK catalogue retrieved, it named Brute Force in 63% of
   cases.
+- **A popular explanation method draws the image, not the model.** On chest X-rays and blood smears, Guided
+  Backprop's heat map stayed 91–93% the same after I randomized the network's top layers. Gradient maps passed that
+  test but changed 95% of what they highlighted under invisible noise.
 - **A stable explanation isn't a faithful one.** 56% of GNNExplainer's explanations changed when re-run with another
   seed, and the edges they highlighted often didn't move the model's score at all.
 
