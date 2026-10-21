@@ -15,6 +15,9 @@ I've kept asking that question since, in every domain I touch.
   82.3 published). Trained on the past and tested on the future, the way it would be deployed, it dropped to 38.
 - **A one-line rule beat a transformer** on the same benchmark: "flag any log message never seen in training" scored
   96.8 against LogBERT's 88.1.
+- **Reading the customer's history is worth 30 points of F1, and a year of drift erases all of it.** On 24M card
+  transactions, a transformer over the last ten purchases reached F1 0.89 against 0.59 for a per-transaction XGBoost.
+  Trained on the past and tested on the next years, every model fell below 0.08: fraud comes in new campaigns.
 - **Small specialists beat big generalists where it counts.** A 150M-parameter biology model identified Colombian birds
   at 80.5%; an 8B vision-language model managed 30.5%, while claiming 95% confidence on 184 of 200 photos.
 - **LLMs invent unless the system forbids it.** Asked why a Bitcoin transaction was flagged, a local LLM made up
