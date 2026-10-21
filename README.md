@@ -1,50 +1,50 @@
-# Juan Diego Garzón Ovalle
+# Hi, I'm Juan Diego
 
 **AI Engineer · M.Sc. in Systems and Computing Engineering (AI) · Pereira, Colombia**
 
-I take AI papers and turn them into systems that people can run, measure and trust. I reproduce the result first,
-then test it the way it would actually be used. Then I ship it with an API, a UI, CI/CD and monitoring, all on a
-single consumer GPU.
+I read AI papers, rebuild them from scratch, and then test them the way they'd actually be used, which is rarely how
+the benchmark was built. Then I ship them as working systems on a single consumer GPU.
 
-My master's research was on **explainable graph neural networks for anti-money laundering**: whether the explanations
-behind a GNN's fraud alerts are stable, plausible and faithful. They often aren't, and the three don't move together.
-That question runs through my work: **a model is only useful if you know when not to trust it.**
+My master's thesis was about **when not to trust a model**: whether the explanations behind a graph neural network's
+money-laundering alerts are stable, plausible and faithful. Mostly they weren't, and the three didn't move together.
+I've kept asking that question since, in every domain I touch.
 
-## Paper → Product
+### Things I've measured that surprised me
 
-One recent paper per project: reproduce it, stress-test it, add something measurable, ship it.
+- **A benchmark result can halve under realistic testing.** I reproduced LogBERT's log anomaly detection (F1 83.2 vs.
+  82.3 published). Trained on the past and tested on the future, the way it would be deployed, it dropped to 38.
+- **A one-line rule beat a transformer** on the same benchmark: "flag any log message never seen in training" scored
+  96.8 against LogBERT's 88.1.
+- **Small specialists beat big generalists where it counts.** A 150M-parameter biology model identified Colombian birds
+  at 80.5%; an 8B vision-language model managed 30.5%, while claiming 95% confidence on 184 of 200 photos.
+- **LLMs invent unless the system forbids it.** Asked why a Bitcoin transaction was flagged, a local LLM made up
+  specifics in 30 of 30 answers. Forcing every claim to cite a fact, and checking it with code, got 90% of claims
+  grounded.
+- **Retrieval changes what an agent says, not just how sure it sounds.** From memory, a security agent labelled SSH
+  brute force as "Valid Accounts" every time; with the MITRE ATT&CK catalogue retrieved, it named Brute Force in 63% of
+  cases.
+- **A stable explanation isn't a faithful one.** 56% of GNNExplainer's explanations changed when re-run with another
+  seed, and the edges they highlighted often didn't move the model's score at all.
 
-| Project | Paper | What I found | Stack |
-|---|---|---|---|
-| **[log-sentinel](https://github.com/Gaova777/log-sentinel)**: log-based cyber defence | LogBERT (2021) | Reproduced it (F1 83.2 vs. 82.3 published), then tested it chronologically: it drops to 38. A 1.6M-parameter detector raises 4x fewer false alarms than a local LLM and runs ~7,000x faster. A triage agent maps attacks to MITRE ATT&CK and waits for a human before acting. | PyTorch, LangGraph, Ollama, FastAPI, React, DVC |
-| **[aml-graphrag](https://github.com/Gaova777/aml-graphrag)**: an AML analyst assistant that cites its sources | GraphRAG (Microsoft, 2024) | GraphRAG beat vector RAG 77–89% head to head (paper: 72–83%). Without a citation rule, a local LLM invented facts in 30 of 30 answers; with it and the transaction graph, 90% of claims were grounded and every unstable GNN explanation was flagged. | PyTorch Geometric, igraph, Ollama, FastAPI, Angular, Langfuse |
-| **[bioclip-colombia](https://github.com/Gaova777/bioclip-colombia)**: a species ID tool that says "I'm not sure" | BioCLIP (CVPR 2024) | 77.8% species accuracy on Colombian birds (CLIP: 29.1%); calibrated abstention cut wrong answers to 4%. A 150M-parameter specialist beat an 8B vision-language model 80.5% to 30.5%. | OpenCLIP, ONNX, LangGraph, FastAPI, React, MLflow, Jenkins, AWS SAM |
-| **road-damage-colombia**: road damage detection and repair priority | RT-DETR (CVPR 2024) | *In progress* | |
+### What I'm into
 
-Every project has a results folder with the numbers, the evaluation code, and a section on what didn't work.
+- Evaluation that reflects deployment: temporal splits, base rates, calibration, abstention, cost per prediction
+- LLM systems that cite, check and defer: GraphRAG, agents with human approval, LLM-as-judge done carefully
+- Explainability that's measured rather than drawn: stability, fidelity, plausibility
+- Making models cheap enough to actually run: small specialists, ONNX, quantization, local inference
 
-## Research
+### Background
 
-- **[gnns_thesis](https://github.com/Gaova777/gnns_thesis)**: GCN, GraphSAGE, GAT and TAGCN on the Elliptic Bitcoin
-  dataset under extreme class imbalance. Three explainers (GNNExplainer, PGExplainer, GNNShap) were measured for
-  stability, plausibility and fidelity, with a factorial analysis of what drives them. M.Sc. thesis, Universidad
-  Tecnológica de Pereira, with Alejandro Gómez Huertas.
+Before AI I spent years building software end to end: Python and Java backends, React and Angular frontends, and data
+platforms on AWS and Azure. That's why I care about the parts around the model: APIs, CI/CD with quality gates,
+monitoring, and what happens when the data drifts.
 
-## What I work with
+**Toolbox:** PyTorch · PyTorch Geometric · Hugging Face · OpenCLIP · LangGraph · Ollama · FastAPI · ONNX Runtime ·
+Docker · Jenkins · MLflow · DVC · Langfuse · React · Angular · AWS
 
-- **Modeling:** PyTorch, PyTorch Geometric, transformers, CLIP-style models, detection, GNN explainability, calibration
-- **LLM systems:** RAG and GraphRAG, LangGraph agents with human-in-the-loop, structured outputs, LLM-as-judge
-  evaluation, local inference with Ollama
-- **Serving and optimization:** FastAPI, ONNX Runtime, quantization, Docker, AWS Lambda (SAM)
-- **MLOps:** Jenkins CI/CD with model quality gates, MLflow, DVC, Langfuse, reproducible pipelines
-- **Product:** React, Angular, TypeScript; years of backend (Python, Java/Spring) and data engineering (AWS, Azure)
+### Talk to me about
 
-## How I work
+Why your model's validation score won't survive production · graph ML for fraud · getting an LLM to say "I don't know"
+· Colombian biodiversity and data
 
-- A number beats an adjective: every claim comes with the evaluation behind it.
-- Reproduce before you improve, and test the way the system will be used, not the way the benchmark was built.
-- Write down what didn't work. It's usually the most useful part.
-
-## Contact
-
-[LinkedIn]([LINKEDIN_URL](https://www.linkedin.com/in/juan-diego-garzon-ovalle-82006a188/)) · gaova777@utp.edu.co
+gaova777@utp.edu.co
