@@ -22,6 +22,10 @@ I've kept asking that question since, in every domain I touch.
   improved on HumanEval (83.5% to 88.4%), yet produced 0 executable berth plans in 30 scenarios that an exact
   solver optimized in under half a second. As the operator's interface it understood 93% of requests in English
   and Spanish, and letting code do the arithmetic removed its addition mistakes.
+- **"Written for a 5-year-old" is a claim you can measure.** Asked for a children's story at a given age, a 4B model
+  landed at the right Spanish reading level (Fernández-Huerta plus sentence length) 42% of the time; measuring each
+  story and having it rewrite the sentences that missed brought that to 71%. Along the way I reproduced the three
+  claims of Adversarial Diffusion Distillation (SDXL-Turbo) on one RTX 4060.
 - **A detector is only as good as the country it was trained in.** RT-DETR beat YOLO on road damage in every
   country I tested (0.57 vs 0.50 mAP50 in Japan) and ran at 95 FPS after TensorRT; trained on Japan alone, YOLO
   fell from 0.49 to 0.07 in India, and on a country no model had seen, all of them dropped to 0.08–0.16.
@@ -57,7 +61,7 @@ platforms on AWS and Azure. That's why I care about the parts around the model: 
 monitoring, and what happens when the data drifts.
 
 **Toolbox:** PyTorch · PyTorch Geometric · Hugging Face · OpenCLIP · LangGraph · Ollama · FastAPI · ONNX Runtime ·
-Docker · Jenkins · MLflow · DVC · Langfuse · React · Angular · AWS
+diffusers · Docker · Jenkins · Terraform · MLflow · DVC · Langfuse · React · Next.js · Angular · AWS
 
 ### Talk to me about
 
